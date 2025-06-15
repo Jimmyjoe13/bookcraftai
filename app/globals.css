@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vous pourrez ajouter des styles globaux personnalisés ici plus tard */
+body {
+  /* Exemple : couleur de fond par défaut pour le mode clair */
+  /* background-color: #f8f9fa; */
+  /* color: #212529; */
+}
+
+/* Exemple : styles pour le mode sombre (si vous utilisez une classe 'dark' sur html ou body) */
+/*
+.dark body {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}
+*/

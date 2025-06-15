@@ -65,10 +65,14 @@ export const useBookEditor = (bookId: string) => {
     try {
       const response = await generateContent(requestData); // generateContent s'attend à DeepSeekRequest complet
       
-      if (response.content) {
-        // Placeholder pour l'intégration TipTap
-        console.log('TipTap Integration: editor.commands.insertContent:', response.content);
-        // editor?.commands.insertContent(response.content);
+      if (response.content && editor) {
+        // Insérer le contenu à la position actuelle du curseur ou de la sélection
+        // editor.chain().focus().insertContent(response.content).run();
+        // Pour être plus précis sur la position, surtout si rien n'est sélectionné :
+        const { state } = editor;
+        const { from, to } = state.selection;
+        editor.chain().focus().insertContentAt({ from, to }, response.content).run();
+        console.log('TipTap Integration: Content inserted via editor.chain()');
       }
     } catch (error) {
       console.error('useBookEditor - insertAISuggestion error:', error);
